@@ -1,5 +1,6 @@
 package br.com.joaoroberto.screenmatch;
 
+import br.com.joaoroberto.model.DadosEpisodio;
 import br.com.joaoroberto.model.DadosSerie;
 import br.com.joaoroberto.service.ConsumoApi;
 import br.com.joaoroberto.service.ConverteDados;
@@ -27,8 +28,13 @@ public class ScreenmatchApplication implements CommandLineRunner {
 		var ConsumoApi = new ConsumoApi();
 		var json = ConsumoApi.obterDados("https://www.omdbapi.com/?t=game+of+thrones&apikey=2d9a4818");
 		System.out.println(json);
+
 		ConverteDados conversor = new ConverteDados();
 		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
 		System.out.println(dados);
+
+		json = ConsumoApi.obterDados("https://www.omdbapi.com/?t=game+of+thrones&season=1&episode=1&apikey=2d9a4818");
+		DadosEpisodio dadosEpisodio = conversor.obterDados(json, DadosEpisodio.class);
+		System.out.println(json);
 	}
 }
