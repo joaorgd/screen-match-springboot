@@ -1,7 +1,6 @@
 package br.com.joaoroberto.modelos;
 
 import br.com.joaoroberto.exception.ErrorDeConversaoDeAnoException;
-import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Comparable<Titulo> {
     private String nome;
