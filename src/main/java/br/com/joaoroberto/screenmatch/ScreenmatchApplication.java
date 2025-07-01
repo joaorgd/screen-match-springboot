@@ -5,9 +5,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// A interface CommandLineRunner faz com que o método "run" seja executado
-// automaticamente logo após a inicialização da aplicação Spring Boot.
-// É aqui que a lógica principal da nossa aplicação de console reside.
+
+//  A classe principal da aplicação Spring Boot.
+//  A responsabilidade dela agora é apenas iniciar o Spring e delegar a execução
+//  para a classe Principal, que contém a lógica de negócio.
+//  Isso torna a classe de inicialização muito mais limpa e focada.
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner {
@@ -15,7 +17,6 @@ public class ScreenmatchApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(ScreenmatchApplication.class, args);
     }
-
 
     @Override
     public void run(String... args) throws Exception {

@@ -1,9 +1,12 @@
 package br.com.joaoroberto.principal;
 
 import br.com.joaoroberto.model.DadosSerie;
+import br.com.joaoroberto.model.DadosTemporada;
 import br.com.joaoroberto.service.ConsumoApi;
 import br.com.joaoroberto.service.ConverteDados;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 // A classe Principal agora gerencia a interação com o usuário e o fluxo da aplicação.
@@ -29,5 +32,21 @@ public class Principal {
         var json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
         DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
         System.out.println(dados);
+
+        // Cria uma lista para armazenar os dados de todas as temporadas.
+        List<DadosTemporada> temporadas = new ArrayList<>();
+
+        // Loop 'for' para buscar os dados de cada temporada individualmente.
+        // O loop vai de 1 até o número total de temporadas obtido na primeira chamada.
+        for (int i = 1; i <= dados.totalTemporadas(); i++) {
+            // Para cada iteração, faz uma nova chamada à API, especificando o número da temporada.
+            json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + "&season=" + i + API_KEY);
+            // Converte o JSON da temporada para um objeto DadosTemporada.
+            DadosTemporada dadosTemporada = conversor.obterDados(json, DadosTemporada.class);
+            temporadas.add(dadosTemporada);
+        }
+        // Utiliza um forEach com method reference para imprimir os dados de todas as temporadas
+        // de forma concisa e legível.
+        temporadas.forEach(System.out::println);
     }
 }
