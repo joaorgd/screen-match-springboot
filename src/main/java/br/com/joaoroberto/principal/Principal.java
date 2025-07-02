@@ -3,6 +3,7 @@ package br.com.joaoroberto.principal;
 import br.com.joaoroberto.model.DadosEpisodio;
 import br.com.joaoroberto.model.DadosSerie;
 import br.com.joaoroberto.model.DadosTemporada;
+import br.com.joaoroberto.model.Episodio;
 import br.com.joaoroberto.service.ConsumoApi;
 import br.com.joaoroberto.service.ConverteDados;
 
@@ -57,5 +58,12 @@ public class Principal {
                 .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed()) // Ordena pela avaliação, da maior para a menor.
                 .limit(5) // Limita a seleção aos 5 primeiros.
                 .forEach(System.out::println); // Imprime o resultado.
+
+        List<Episodio> episodios = temporadas.stream()
+                .flatMap(t -> t.episodios().stream()
+                        .map(d -> new Episodio(t.numero(), d))
+                ).collect(Collectors.toList());
+
+        episodios.forEach(System.out::println);
     }
 }
