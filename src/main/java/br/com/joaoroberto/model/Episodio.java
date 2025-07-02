@@ -1,8 +1,10 @@
 package br.com.joaoroberto.model;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException; // Import para a exceção
+import java.time.format.DateTimeParseException;
 
+// Esta classe representa o nosso modelo de domínio para um episódio.
+// Ela transforma os dados brutos (DadosEpisodio) num objeto com tipos mais adequados.
 public class Episodio {
     private Integer temporada;
     private String titulo;
@@ -10,27 +12,33 @@ public class Episodio {
     private Double avaliacao;
     private LocalDate dataLancamento;
 
+    /**
+     * Construtor que recebe o número da temporada e os dados brutos do episódio (DadosEpisodio).
+     * Ele é responsável por converter e tratar os dados.
+     */
     public Episodio(Integer numeroTemporada, DadosEpisodio dadosEpisodio) {
         this.temporada = numeroTemporada;
         this.titulo = dadosEpisodio.titulo();
         this.numeroEpisodio = dadosEpisodio.numero();
 
+        // Tenta converter a avaliação de String para Double.
+        // Se falhar (ex: a avaliação for "N/A"), define o valor padrão como 0.0.
         try {
             this.avaliacao = Double.valueOf(dadosEpisodio.avaliacao());
         } catch (NumberFormatException ex) {
             this.avaliacao = 0.0;
         }
 
-        // Adicionado try-catch para lidar com possíveis erros de formato de data.
+        // Tenta converter a data de lançamento de String para LocalDate.
+        // Se falhar (ex: a data vier em formato inesperado), define o valor como nulo.
         try {
             this.dataLancamento = LocalDate.parse(dadosEpisodio.dataLancamento());
         } catch (DateTimeParseException ex) {
-            // Se a data não puder ser convertida, definimos como nula.
             this.dataLancamento = null;
         }
     }
 
-    // Getters e Setters continuam os mesmos...
+    // Getters e Setters ...
 
     public LocalDate getDataLancamento() {
         return dataLancamento;

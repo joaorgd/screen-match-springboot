@@ -39,31 +39,33 @@ public class Principal {
 
         temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
 
-        /**
-         * O que é uma Stream (Fluxo)?
-         * De forma resumida, uma Stream é uma sequência de elementos de uma fonte de dados
-         * (como uma lista) que suporta operações de processamento em cadeia.
-         * Ela não armazena os dados, apenas define as operações a serem feitas (filtrar, ordenar, etc).
-         */
-
-        // Cria uma lista única com todos os episódios de todas as temporadas.
         List<DadosEpisodio> dadosEpisodios = temporadas.stream()
-                .flatMap(t -> t.episodios().stream()) // "Achata" as listas de episódios num único fluxo.
-                .collect(Collectors.toList()); // Coleta o resultado do fluxo numa nova lista.
+                .flatMap(t -> t.episodios().stream())
+                .collect(Collectors.toList());
 
         System.out.println("\nTop 5 episódios: ");
-        // Processa a lista de episódios num fluxo para realizar as operações.
         dadosEpisodios.stream()
-                .filter(e -> !e.avaliacao().equalsIgnoreCase("N/A")) // Filtra os que não têm avaliação.
-                .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed()) // Ordena pela avaliação, da maior para a menor.
-                .limit(5) // Limita a seleção aos 5 primeiros.
-                .forEach(System.out::println); // Imprime o resultado.
+                .filter(e -> !e.avaliacao().equalsIgnoreCase("N/A"))
+                .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed())
+                .limit(5)
+                .forEach(System.out::println);
 
+        /**
+         * O código abaixo transforma os dados brutos dos episódios (DadosEpisodio)
+         * em objetos mais robustos e completos da nossa classe de domínio (Episodio).
+         *
+         * 1. .stream(): Cria um fluxo a partir da lista de temporadas.
+         * 2. .flatMap(): "Achata" o fluxo, pegando a lista de episódios de cada temporada.
+         * 3. .map(): Para cada dado de episódio (d), cria um objeto 'Episodio',
+         * passando o número da temporada (t.numero()) e os dados do episódio (d).
+         * 4. .collect(): Coleta todos os novos objetos 'Episodio' numa lista.
+         */
         List<Episodio> episodios = temporadas.stream()
                 .flatMap(t -> t.episodios().stream()
                         .map(d -> new Episodio(t.numero(), d))
                 ).collect(Collectors.toList());
 
+        // Imprime a lista de objetos Episodio recém-criada, agora com dados tratados.
         episodios.forEach(System.out::println);
     }
 }
