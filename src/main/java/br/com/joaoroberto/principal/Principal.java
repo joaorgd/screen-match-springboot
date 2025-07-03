@@ -56,15 +56,11 @@ public class Principal {
 
         episodios.forEach(System.out::println);
 
-        // Busca de episódio por trecho do título.
         System.out.print("Digite o trecho do título do episódio: ");
         var trechoTitulo = leitura.nextLine();
-        // Utiliza um fluxo (stream) para filtrar a lista de episódios.
-        // O método findFirst() retorna um Optional, que pode ou não conter um valor.
         Optional<Episodio> episodioBuscado = episodios.stream()
                 .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
                 .findFirst();
-        // Verifica se o Optional contém um valor antes de tentar acessá-lo.
         if(episodioBuscado.isPresent()) {
             System.out.println("Episódio encontrado!");
             System.out.println("(Temporada: " + episodioBuscado.get().getTemporada() + ") " + "(Episódio: " + episodioBuscado.get().getNumeroEpisodio() + ")");
@@ -72,17 +68,14 @@ public class Principal {
             System.out.println("Episódio não encontrado!");
         }
 
-        // Busca de episódios por ano de lançamento.
         System.out.println("A partir de qual ano você deseja visualizar os episódios?");
         var ano = leitura.nextInt();
-        leitura.nextLine(); // Consome a quebra de linha pendente.
+        leitura.nextLine();
 
         LocalDate dataBusca = LocalDate.of(ano, 1, 1);
 
-        // Define um formatador para exibir a data no padrão brasileiro (dd/MM/yyyy).
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        // Filtra e exibe os episódios lançados após a data especificada.
         episodios.stream()
                 .filter(e -> e.getDataLancamento() != null && e.getDataLancamento().isAfter(dataBusca))
                 .forEach(e -> System.out.println(
@@ -90,5 +83,13 @@ public class Principal {
                                 "(Episódio: " + e.getTitulo() + ") " +
                                 "(Data de Lançamento: " + e.getDataLancamento().format(formatador) + ")"
                 ));
+
+        // Cria um mapa para armazenar a média das avaliações por temporada.
+        Map<Integer, Double> avaliacoesPorTemporada = episodios.stream()
+                .filter(e -> e.getAvaliacao() > 0.0) // Filtra episódios sem avaliação.
+                .collect(Collectors.groupingBy(Episodio::getTemporada, // Agrupa os episódios pelo número da temporada.
+                        Collectors.averagingDouble(Episodio::getAvaliacao))); // Para cada grupo, calcula a média das avaliações.
+
+        System.out.println(avaliacoesPorTemporada);
     }
 }
