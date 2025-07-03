@@ -49,29 +49,22 @@ public class Principal {
                 .limit(5)
                 .forEach(System.out::println);
 
-        /**
-         * O código abaixo transforma os dados brutos dos episódios (DadosEpisodio)
-         * em objetos mais robustos e completos da nossa classe de domínio (Episodio).
-         *
-         * 1. .stream(): Cria um fluxo a partir da lista de temporadas.
-         * 2. .flatMap(): "Achata" o fluxo, pegando a lista de episódios de cada temporada.
-         * 3. .map(): Para cada dado de episódio (d), cria um objeto 'Episodio',
-         * passando o número da temporada (t.numero()) e os dados do episódio (d).
-         * 4. .collect(): Coleta todos os novos objetos 'Episodio' numa lista.
-         */
         List<Episodio> episodios = temporadas.stream()
                 .flatMap(t -> t.episodios().stream()
                         .map(d -> new Episodio(t.numero(), d))
                 ).collect(Collectors.toList());
 
-        // Imprime a lista de objetos Episodio recém-criada, agora com dados tratados.
         episodios.forEach(System.out::println);
 
+        // Busca de episódio por trecho do título.
         System.out.print("Digite o trecho do título do episódio: ");
         var trechoTitulo = leitura.nextLine();
+        // Utiliza um fluxo (stream) para filtrar a lista de episódios.
+        // O método findFirst() retorna um Optional, que pode ou não conter um valor.
         Optional<Episodio> episodioBuscado = episodios.stream()
                 .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
                 .findFirst();
+        // Verifica se o Optional contém um valor antes de tentar acessá-lo.
         if(episodioBuscado.isPresent()) {
             System.out.println("Episódio encontrado!");
             System.out.println("(Temporada: " + episodioBuscado.get().getTemporada() + ") " + "(Episódio: " + episodioBuscado.get().getNumeroEpisodio() + ")");
@@ -79,14 +72,17 @@ public class Principal {
             System.out.println("Episódio não encontrado!");
         }
 
+        // Busca de episódios por ano de lançamento.
         System.out.println("A partir de qual ano você deseja visualizar os episódios?");
         var ano = leitura.nextInt();
-        leitura.nextLine();
+        leitura.nextLine(); // Consome a quebra de linha pendente.
 
         LocalDate dataBusca = LocalDate.of(ano, 1, 1);
 
+        // Define um formatador para exibir a data no padrão brasileiro (dd/MM/yyyy).
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+        // Filtra e exibe os episódios lançados após a data especificada.
         episodios.stream()
                 .filter(e -> e.getDataLancamento() != null && e.getDataLancamento().isAfter(dataBusca))
                 .forEach(e -> System.out.println(
