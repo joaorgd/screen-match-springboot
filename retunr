@@ -1,0 +1,120 @@
+[33mcommit 99d5382bbd0c6c4571ebd823088bcf4a69fb07b9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Thu Jul 3 09:56:57 2025 -0300
+
+    package br.com.joaoroberto.principal;
+
+[33mcommit 5d33dc7a917992e606aee652b8c448d4309775d9[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Wed Jul 2 21:28:10 2025 -0300
+
+    feat: Adiciona busca de episódios por título e ano de lançamento
+
+[33mcommit ed288a06b41a2c11b0d38196c311d2a69aaf9b5b[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Wed Jul 2 21:27:39 2025 -0300
+
+    feat: Adiciona busca de episódios por título e ano de lançamento
+
+[33mcommit aa95593201889a81dc8d6d8150a21f1e62913fe5[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Wed Jul 2 11:42:22 2025 -0300
+
+    pequenas alterações na saída de dados
+
+[33mcommit 264c6f36f293111691b7ef966e221e83108ff0c0[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Wed Jul 2 10:31:26 2025 -0300
+
+    feat: Cria classe de domínio Episodio e mapeia dados da API
+
+[33mcommit 0cd3b2970fe7c3c93899ff4f71ac2a66a48e2913[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Wed Jul 2 10:30:32 2025 -0300
+
+    feat: Cria classe de domínio Episodio e mapeia dados da API
+
+[33mcommit 41fdeaa12bf826fd0cf84f056bdb939630f2d3db[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Tue Jul 1 22:00:16 2025 -0300
+
+    feat: Adiciona ranking dos 5 melhores episódios da série
+
+[33mcommit 43fd3f39490c7db43fe47c8652e899273a5cce0d[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Tue Jul 1 11:51:28 2025 -0300
+
+    refactor: Utiliza forEach com lambda para exibir os episódios
+
+[33mcommit db3c48c72a02a25576ae1b21a3df3fd54d4fcdbf[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Tue Jul 1 10:16:25 2025 -0300
+
+    refactor: Extrai lógica da aplicação para a classe Principal
+
+[33mcommit 4eb5e69c04a453e37257146d3bdcedf69863b061[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Tue Jul 1 10:15:25 2025 -0300
+
+    refactor: Extrai lógica da aplicação para a classe Principal
+
+[33mcommit 30cf2707a815f2b3f4bd73a27c5621703b14add8[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Mon Jun 30 21:53:48 2025 -0300
+
+    refactor: Extrai a lógica de interação do usuário para a classe Principal
+
+[33mcommit 5f7ed1384691646c8514ce374db6214052e1fa08[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Mon Jun 30 11:01:40 2025 -0300
+
+    feat: Implementa busca por temporadas e refatora serviços de API
+
+[33mcommit 58961a26f8d15f432be5ef500674be6707649db9[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Sat Jun 28 10:18:57 2025 -0300
+
+    criação de classe para trazer dados sobre os episódios
+
+[33mcommit d615d26bbdc1e80e195f301c8c3ab58b3222df56[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Sat Jun 28 09:51:35 2025 -0300
+
+    melhorias na consulta de dados sobre séries
+
+[33mcommit 86199be610b2a53e3c2d8eefc6ecd690cdd376b7[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Sat Jun 28 09:50:22 2025 -0300
+
+    melhorias na consulta de dados sobre séries
+
+[33mcommit 9de8802a9518616ae95276dd966fa2f2a9904b6e[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Fri Jun 27 21:39:48 2025 -0300
+
+    criação de record dadoSerie e adição de biblioteca jackson
+
+[33mcommit c84d283aca77eacf87ce4ebdfcc107e14af7d324[m
+Merge: 4a4867b 8d042ad
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Thu Jun 26 11:50:20 2025 -0300
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 4a4867bee39c639790429af6f7df5169e479bdf6[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Thu Jun 26 11:42:04 2025 -0300
+
+    modularização das classes
+
+[33mcommit 8d042ad9754e31dae4756f2c80e999b3dfc7096e[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Wed Jun 25 23:03:40 2025 -0300
+
+    Create README.md
+
+[33mcommit eac8f297aebe264fd664d0cf77eccaa1656a3f49[m
+Author: João Roberto <joaorobertoguedesdantas@gmail.com>
+Date:   Wed Jun 25 22:34:30 2025 -0300
+
+    início do projeto com springboot
