@@ -83,13 +83,21 @@ public class Principal {
                                 "(Episódio: " + e.getTitulo() + ") " +
                                 "(Data de Lançamento: " + e.getDataLancamento().format(formatador) + ")"
                 ));
-
-        // Cria um mapa para armazenar a média das avaliações por temporada.
         Map<Integer, Double> avaliacoesPorTemporada = episodios.stream()
-                .filter(e -> e.getAvaliacao() > 0.0) // Filtra episódios sem avaliação.
-                .collect(Collectors.groupingBy(Episodio::getTemporada, // Agrupa os episódios pelo número da temporada.
-                        Collectors.averagingDouble(Episodio::getAvaliacao))); // Para cada grupo, calcula a média das avaliações.
-
+                .filter(e -> e.getAvaliacao() > 0.0)
+                .collect(Collectors.groupingBy(Episodio::getTemporada,
+                        Collectors.averagingDouble(Episodio::getAvaliacao)));
         System.out.println(avaliacoesPorTemporada);
+
+        // Coleta estatísticas descritivas das avaliações dos episódios.
+        DoubleSummaryStatistics est = episodios.stream()
+                .filter(e -> e.getAvaliacao() > 0.0) // Filtra episódios sem avaliação.
+                .collect(Collectors.summarizingDouble(Episodio::getAvaliacao)); // Coleta estatísticas como média, min, max, etc.
+
+        // Imprime as estatísticas calculadas.
+        System.out.println("Média: " + est.getAverage());
+        System.out.println("Melhor episódio: " + est.getMax());
+        System.out.println("Pior episódio: " + est.getMin());
+        System.out.println("Quantidade de episódios: " + est.getCount());
     }
 }
